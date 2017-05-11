@@ -5,16 +5,24 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 
+import { AppRoutingModule } from './app-routing/app-routing.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { RestaurantesService } from "app/restaurantes.service";
+import { AddRestauranteComponent } from './add-restaurante/add-restaurante.component';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DashboardComponent,
+    AddRestauranteComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    AppRoutingModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [RestaurantesService],
+  bootstrap: [DashboardComponent]
 })
 export class AppModule { }
