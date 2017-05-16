@@ -15,9 +15,9 @@
 			<h4 class="restaurante__title">{{restaurante.nombre}}</h4>
 			<p class="restaurante__direccion"><i class="fa fa-map-marker"></i> {{restaurante.direccion}}</p>
 			<p>
-				<a [routerLink]="['Restaurante',{id: restaurante.id}]" class="btn btn--ver">
+				<a [routerLink]="['/VerRestaurante',restaurante.id]" class="btn btn--ver">
 					<i class="fa fa-eye"></i> Ver</a>
-				<a [routerLink]="['EditarRestaurante',{id: restaurante.id}]" class="btn btn--editar"><i class="fa fa-pencil"></i> Editar</a>
+				<a [routerLink]="['/EditarRestaurante',restaurante.id]" class="btn btn--editar"><i class="fa fa-pencil"></i> Editar</a>
 				<a (click)="onBorrarRestaurante(restaurante.id)" class="btn btn--eliminar"><i class="fa fa-trash"></i> Eliminar</a>
 			</p>
            

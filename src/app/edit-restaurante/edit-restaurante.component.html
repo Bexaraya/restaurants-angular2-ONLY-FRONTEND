@@ -1,0 +1,52 @@
+<div class="crear-restaurante">
+	<h1 class="crear-restaurante__titulo">{{titulo}}</h1>
+	<br>
+	<form #formresturante="ngForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+
+
+		<label>Nombre</label>
+		<span *ngIf="!nombre.valid" class="invalido">Debes rellenar el nombre</span>
+		<span *ngIf="nombre.valid" class="valido"><i class="fa fa-check"></i></span>
+		<br>
+		<input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="restaurante.nombre" required/>
+		<label>Imagen</label>
+		<div class="imagen-box">
+			<div class="imagen-subida">
+				<img *ngIf="loadingImagen===false" class="imagen-add-restaurante" src="{{rutaImagen}}" />
+				<img *ngIf="loadingImagen==true" class="loading-imagen" src="assets/images/loading.gif" />
+			</div>
+			<input (change)="subirImagen($event)" type="file" accept="image/*" placeholder="subir imagen"/>
+		</div>
+		<br>
+		<label>Dirección</label>
+		<span class="invalido" *ngIf="!direccion.valid">Debes rellenar la dirección</span>
+		<span *ngIf="direccion.valid" class="valido"><i class="fa fa-check"></i></span>
+		<br>
+		<input type="text" name="direccion" #direccion="ngModel" [(ngModel)]="restaurante.direccion" required/>
+
+		<br>
+		<label>Descripción</label>
+		<span class="invalido" *ngIf="!descripcion.valid">Debes rellenar la descripción</span>
+		<span *ngIf="descripcion.valid" class="valido"><i class="fa fa-check"></i></span>
+		<br>
+		<textarea name="descripcion" #descripcion="ngModel" [(ngModel)]="restaurante.descripcion" required>
+    </textarea>
+
+		<br>
+		<label>Precio</label>
+		<span class="invalido" *ngIf="!precio.valid">Debes seleccionar un precio</span>
+		<span *ngIf="precio.valid" class="valido"><i class="fa fa-check"></i></span>
+		<br>
+		<select name="precio" #precio="ngModel" [(ngModel)]="restaurante.precio" required>
+            <option value="Bajo">BAJO</option>
+            <option value="Medio">MEDIO</option>
+            <option value="Alto">ALTO</option>
+	    </select>
+		<br>
+
+
+
+
+		<input class="btn" type="submit" value="{{titulo}}" [disabled]="!formresturante.form.valid" />
+	</form>
+</div>

@@ -43,7 +43,7 @@ export class RestaurantesService extends Service{
                 "precio":"100000"}
             }
     */
-    public getRestauranteById(id: String){
+    public getRestauranteById(id: number){
         let options = this.configurarCabeceras();
         return this._http.get(this.baseURL + "/restaurantes/" + id, options).map(this.obtenerDatos)
         .catch(this.tratarErrores);
@@ -80,13 +80,13 @@ export class RestaurantesService extends Service{
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4) {
                     if (xhr.status == 200) {
-                        resolve(JSON.parse(xhr.response));
+                        resolve(xhr.response);
                     } else {
                         reject(xhr.response);
                     }
                 }
             }
-            xhr.open("POST", this.baseURL + "/upload-file", true);
+            xhr.open("POST", this.baseURL + "/restaurantes/upload_file", true);
             xhr.send(formData);
         });
     }
