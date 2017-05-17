@@ -30,8 +30,8 @@ export class EditRestauranteComponent implements OnInit {
         this._restaurantesService.subirImagen(this.imagenesParaSubir[0]).then(
             result => {
                 this.loadingImagen = false;
-                this.restaurante.imagen = result.toString();
-                this.rutaImagen = result.toString();
+                this.restaurante.imagen = this.imagenesParaSubir[0].name.toString();
+                this.rutaImagen = "http://localhost:3000/api/restaurantes/download_file/" + this.restaurante.imagen;
                 console.log(result);
             },
             error => {
@@ -78,7 +78,7 @@ export class EditRestauranteComponent implements OnInit {
                 }
                 
                 if (this.restaurante.imagen != null) {
-                    this.rutaImagen = this.restaurante.imagen;
+                    this.rutaImagen = "http://localhost:3000/api/restaurantes/download_file/" + this.restaurante.imagen;
                 } else {
                     this.rutaImagen = "/assets/images/imagen-default.jpg";
                 }

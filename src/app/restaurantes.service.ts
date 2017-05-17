@@ -49,6 +49,12 @@ export class RestaurantesService extends Service{
         .catch(this.tratarErrores);
     }
 
+    public getRestauranteRandom() {
+        let options = this.configurarCabeceras();
+        return this._http.get(this.baseURL + "/restaurantes/random/comer_hoy", options).map(this.obtenerDatos)
+        .catch(this.tratarErrores);
+    }
+
     public addRestaurante(restaurante:Restaurante){
         let json = JSON.stringify(restaurante);
         let options = this.configurarCabeceras();
@@ -62,13 +68,13 @@ export class RestaurantesService extends Service{
          let json = JSON.stringify(restaurante);
         let options = this.configurarCabeceras();
         return this._http.put(
-            this.baseURL + "/update-restaurante/" + restaurante.id,
+            this.baseURL + "/restaurantes/" + restaurante.id,
              json,
              options).map(this.obtenerDatos).catch(this.tratarErrores);
     }
 
     public removeRestaurante(id:number){
-        return this._http.delete(this.baseURL + '/delete-restaurante/' + id)
+        return this._http.delete(this.baseURL + '/restaurantes/' + id)
         .catch(this.tratarErrores);
     }
 

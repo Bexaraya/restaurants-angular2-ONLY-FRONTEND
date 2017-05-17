@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'Home',  component: AppComponent },
   { path: 'CrearRestaurante',  component: AddRestauranteComponent },
   { path:'VerRestaurante/:id', component: RestauranteDetailComponent },
+  { path:'DondeComerHoy', component: RestauranteDetailComponent },
   { path:'EditarRestaurante/:id', component: EditRestauranteComponent },
   { path: '**', redirectTo: '/Home' },
 ];

@@ -25,8 +25,8 @@ constructor(private _restaurantesService: RestaurantesService,
        this.imagenesParaSubir = <Array<File>>fileInput.target.files;
        this._restaurantesService.subirImagen(this.imagenesParaSubir[0]).then(
            result =>{
-               this.restaurante.imagen = this.imagenesParaSubir[0].name;
-               this.rutaImagen = "http://localhost:3000/api/restaurantes/download_file/" + result.toString();
+               this.restaurante.imagen = this.imagenesParaSubir[0].name.toString();
+               this.rutaImagen = "http://localhost:3000/api/restaurantes/download_file/" + this.restaurante.imagen.toString();
                this.loadingImagen=false;
            },
            error =>{

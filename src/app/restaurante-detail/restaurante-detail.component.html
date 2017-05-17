@@ -1,7 +1,7 @@
 <div *ngIf="restaurante" class="restaurante">
     <h1 class="restaurante__nombre">{{restaurante.nombre}}</h1>
     <p class="restaurante__imagen">
-        <img src="{{restaurante.imagen}}">
+        <img src="http://localhost:3000/api/restaurantes/download_file/{{restaurante.imagen}}">
     </p>
     	<p  class="restaurante__precio">
         <span  [ngSwitch]="restaurante.precio">

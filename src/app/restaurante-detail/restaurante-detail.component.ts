@@ -31,22 +31,43 @@ export class RestauranteDetailComponent implements OnInit {
     }
 
     getRestauranteById() {
-        this._route.params
-        .switchMap((params: Params) => this._restaurantesService.getRestauranteById(+params['id']))
-        .subscribe(res => {
-                this.restaurante = res;
-                if (this.restaurante == undefined) {
+        if (this._route.params["id"])
+        {
+            this._route.params
+            .switchMap((params: Params) => this._restaurantesService.getRestauranteById(+params['id']))
+            .subscribe(res => {
+                    this.restaurante = res;
+                    if (this.restaurante == undefined) {
+                        this._router.navigate(['Error']);
+                    }
+                    this.loading=false;
+                },
+                error => {
+                    this.error = <any>error;
                     this._router.navigate(['Error']);
-                }
-                this.loading=false;
-            },
-            error => {
-                this.error = <any>error;
-                this._router.navigate(['Error']);
-                console.error("ERROR: " + error.status);
-                console.info("INFORMACION DEL ERROR");
-                console.info(error._body);
-            });
+                    console.error("ERROR: " + error.status);
+                    console.info("INFORMACION DEL ERROR");
+                    console.info(error._body);
+                });
+        }
+        else {
+            this._route.params
+            .switchMap((params: Params) => this._restaurantesService.getRestauranteRandom())
+            .subscribe(res => {
+                    this.restaurante = res;
+                    if (this.restaurante == undefined) {
+                        this._router.navigate(['Error']);
+                    }
+                    this.loading=false;
+                },
+                error => {
+                    this.error = <any>error;
+                    this._router.navigate(['Error']);
+                    console.error("ERROR: " + error.status);
+                    console.info("INFORMACION DEL ERROR");
+                    console.info(error._body);
+                });
+        }
     }
 
 }
